@@ -1,41 +1,184 @@
-/* Page basics */
-body {
+/* ===== GLOBAL ===== */
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
   margin: 0;
-  padding: 20px;
-  background-color: #000022;      /* dark navy */
-  color: #00ffcc;                 /* neon aqua text */
+  padding: 0;
+}
+
+body {
   font-family: "Press Start 2P", system-ui, sans-serif;
-  image-rendering: pixelated;
+  font-size: 12px;
+  line-height: 1.5;
+  background-color: #050014;
+  color: #00ffcc;
 }
 
-/* Centered, boxed layout */
-main {
-  max-width: 700px;
-  margin: 0 auto;
-  background-color: #000000;
+/* Faint CRT scanline overlay */
+.scanlines {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0.15) 50%,
+    rgba(0, 0, 0, 0) 50%
+  );
+  background-size: 100% 3px;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+/* Centered container with border */
+.page-wrap {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  margin: 24px auto;
+  padding: 16px;
   border: 4px solid #00ffcc;
-  padding: 20px;
-  box-shadow: 0 0 20px #00ffcc;
+  box-shadow: 0 0 24px #00ffcc;
+  background: radial-gradient(circle at top, #110033 0%, #050014 60%, #000000 100%);
 }
 
-/* Headings */
-h1, h2 {
-  text-transform: uppercase;
-  letter-spacing: 2px;
+/* ===== HEADER & NAV ===== */
+
+.site-header {
+  border-bottom: 3px solid #00ffcc;
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
-/* Links */
+.site-title h1 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.tagline {
+  margin: 4px 0 0 0;
+  font-size: 9px;
+  color: #ffea00;
+}
+
+.site-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  padding: 4px 8px;
+  border: 2px solid #00ffcc;
+  text-decoration: none;
+  color: #00ffcc;
+  background-color: #050014;
+}
+
+.nav-link:hover {
+  background-color: #00ffcc;
+  color: #050014;
+}
+
+.nav-link.active {
+  background-color: #00ffcc;
+  color: #050014;
+}
+
+/* ===== MAIN LAYOUT ===== */
+
+.site-main {
+  margin-top: 8px;
+}
+
+.intro-box,
+.content-box {
+  border: 2px dashed #00ffcc;
+  padding: 12px;
+  margin-bottom: 18px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* ===== POSTS ===== */
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.post {
+  border: 2px solid #00ffcc;
+  padding: 12px;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.post-title {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  color: #ffea00;
+}
+
+.post-meta {
+  margin: 0 0 8px 0;
+  font-size: 9px;
+  color: #ff8af2;
+}
+
+.post-body {
+  margin: 0;
+}
+
+/* ===== ARCHIVE LIST ===== */
+
+.archive-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.archive-list li {
+  margin-bottom: 6px;
+}
+
+/* ===== LINKS & FOOTER ===== */
+
 a {
-  color: #ffff00;
+  color: #ffea00;
   text-decoration: none;
 }
+
 a:hover {
   text-decoration: underline;
 }
 
-/* Retro header bar */
-header {
+.site-footer {
+  border-top: 3px solid #00ffcc;
+  margin-top: 20px;
+  padding-top: 10px;
   text-align: center;
-  margin-bottom: 20px;
+  font-size: 9px;
+  color: #8888ff;
 }
 
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 600px) {
+  .page-wrap {
+    margin: 8px;
+    padding: 12px;
+  }
+
+  .site-title h1 {
+    font-size: 14px;
+  }
+
+  body {
+    font-size: 11px;
+  }
+}
